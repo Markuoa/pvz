@@ -9,6 +9,7 @@ extern IMAGE im_lose;
 extern Store store;
 extern The_Plants plants;
 extern Zombie zombie;
+extern Pea peas;
 
 int main()
 {
@@ -24,8 +25,9 @@ int main()
         event1.update();
         store.show();
         plants.show_Plants();
+        peas.show();
         try {
-            zombies.show_Zombies(plants.the_Plants);
+            zombies.show_Zombies(plants.the_Plants, peas.the_peas);
         }
         catch(std::exception e) {
             putimagePng(180, 140, &im_lose);
@@ -33,7 +35,7 @@ int main()
             break;
         }
         FlushBatchDraw();
-        Sleep(90);
+        Sleep(60);
     }
     while (true)
     {
