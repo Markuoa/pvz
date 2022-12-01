@@ -1,7 +1,7 @@
 #pragma once
 #include <graphics.h>  
 #include <math.h>
-#define	 PI 3.14159
+#define  PI 3.14159
 
 // 在当前设备上绘制带透明通道的png图片
 // img_x	绘制位置的x坐标
@@ -59,4 +59,3 @@ inline void putimagePng(int img_x, int img_y, IMAGE* pSrcImg)
 		src = src + src_width;
 	}
 }
-

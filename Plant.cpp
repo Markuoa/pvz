@@ -36,7 +36,7 @@ std::pair<int, int> Plant::coordinate_to_pixel(int, int)
 		pixel_x = 665;
 		break;
 	case 8:
-		pixel_x = 745;
+		pixel_x = 755;
 		break;
 	default:
 		break;

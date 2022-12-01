@@ -48,6 +48,9 @@
     <ClCompile Include="The_Zombies.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Pea.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EasyXPng.h">
@@ -78,6 +81,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="The_Zombies.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Pea.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

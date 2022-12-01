@@ -3,6 +3,7 @@
 #include <conio.h>
 #include <vector>
 #include <iostream>
+#include <ctime>
 #include "EasyXPng.h"
 #include "Sun.h"
 

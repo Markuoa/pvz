@@ -16,7 +16,7 @@ Store::Store()
 {
 	x = 0;
 	y = 0;
-	start = clock();
+	start = GetTickCount();
 	sun = new Sun;
 }
 
@@ -31,9 +31,9 @@ void Store::init_img()
 
 void Store::update()
 {
-	now = clock();
-	now_second = (int(now - start) / CLOCKS_PER_SEC);
-	if (now_second % 5 == 4)
+	now = GetTickCount();
+	now_second = (now - start) / 1000;
+	if (now_second % 100 == 10)
 	{
 		start = now;
 		delete(sun);

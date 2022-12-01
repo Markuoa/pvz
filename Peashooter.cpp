@@ -2,16 +2,19 @@
 #include "Peashooter.h"
 
 std::vector<IMAGE> Peashooter::im_peashooter{};
+extern Pea peas;
 
 
 Peashooter::Peashooter()
 {
 	status = 0;
+	start = clock();
 }
 
 Peashooter::Peashooter(int m_x, int m_y):Plant(m_x, m_y)
 {
 	status = 0;
+	start = clock();
 }
 
 
@@ -34,6 +37,16 @@ void Peashooter::init_img(void)
 
 void Peashooter::show()
 {
+	//ÍÂ×Óµ¯
+	now = clock();
+	bool CD = false;
+	int now_second = (int(now - start) / CLOCKS_PER_SEC);
+	if (now_second % 20 == 5)
+	{
+		peas.the_peas[y].push_back(coordinate_to_pixel(x, y).first + 45);
+		start = now;
+	}
+	//ÏÔÊ¾
 	std::pair<int, int> pixel_coordinate = coordinate_to_pixel(x, y);
 	putimagePng(pixel_coordinate.first, pixel_coordinate.second, &im_peashooter[status]);
 	status = (status + 1) % 12;
