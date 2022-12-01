@@ -23,7 +23,7 @@ void Zombie::init_img(void)
 	{
 		TCHAR src[20] = _T("zombie/20.png");
 		src[8] = i + '0';
-		loadimage(&im_zombie[i + 10], src);   // 导入图片
+		loadimage(&im_zombie[i + 20], src);   // 导入图片
 	}
 
 	//eat
@@ -44,7 +44,7 @@ void Zombie::init_img(void)
 	{
 		TCHAR src[20] = _T("zombie/eat/20.png");
 		src[12] = i + '0';
-		loadimage(&im_zombie_eat[i + 10], src);   // 导入图片
+		loadimage(&im_zombie_eat[i + 20], src);   // 导入图片
 	}
 
 	//die
@@ -127,7 +127,7 @@ int Zombie::pix_to_coordinate_x(int p_x)
 int Zombie::update(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std::list<int>>& peas)
 {
 	//更新状态图片
-	if(situation == 1 || situation == 2)   status = (status + 1) % 20;
+	if(situation == 1 || situation == 2)   status = (status + 1) % 22;
 	coordinate_x = pix_to_coordinate_x(pix_x);
 	//位移
 	if (situation == 1)
@@ -199,7 +199,6 @@ void Zombie::show(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std:
 		putimagePng(pix_x, pix_y, &im_zombie_eat[status]);
 	if (situation == 3)
 		putimagePng(pix_x, pix_y, &im_zombie_die[status]);
-	if (status == 11) status++;
 	if (pix_x < -110)
 	{
 		std::exception e;
