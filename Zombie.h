@@ -11,12 +11,12 @@
 class Zombie
 {
 public:
-	int pix_x = 900;
+	float pix_x = 900;
 	int pix_y;
 	int coordinate_x;
 	int coordinate_y;
 	int HP = 70;
-	int status = 0; //哪一张图片
+	float status = 0; //哪一张图片
 	int situation = 1;//行走状态
 	static std::vector<IMAGE> im_zombie;
 	static std::vector<IMAGE> im_zombie_eat;

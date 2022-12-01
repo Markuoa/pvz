@@ -35,7 +35,7 @@ int main()
             break;
         }
         FlushBatchDraw();
-        Sleep(60);
+        Sleep(30);
     }
     while (true)
     {

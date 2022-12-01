@@ -127,12 +127,17 @@ int Zombie::pix_to_coordinate_x(int p_x)
 int Zombie::update(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std::list<int>>& peas)
 {
 	//更新状态图片
-	if(situation == 1 || situation == 2)   status = (status + 1) % 22;
+	if (situation == 1 || situation == 2)
+	{
+		//status = (status + 1) % 22;
+		status += 0.5;
+		if (status == 22) status = 0;
+	}
 	coordinate_x = pix_to_coordinate_x(pix_x);
 	//位移
 	if (situation == 1)
 	{
-		pix_x -= 1;
+		pix_x -= 0.4;
 	}
 	//遇到植物进入eat状态，植物扣血
 	if (situation == 1 || situation == 2)
@@ -193,12 +198,13 @@ int Zombie::update(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std
 void Zombie::show(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std::list<int>>& peas)
 {
 	update(the_Plants, peas);
+	int status_int = (int)status;
 	if (situation == 1)
-		putimagePng(pix_x, pix_y, &im_zombie[status]);
+		putimagePng(pix_x, pix_y, &im_zombie[status_int]);
 	if (situation == 2)
-		putimagePng(pix_x, pix_y, &im_zombie_eat[status]);
+		putimagePng(pix_x, pix_y, &im_zombie_eat[status_int]);
 	if (situation == 3)
-		putimagePng(pix_x, pix_y, &im_zombie_die[status]);
+		putimagePng(pix_x, pix_y, &im_zombie_die[status_int]);
 	if (pix_x < -110)
 	{
 		std::exception e;

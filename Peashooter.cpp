@@ -48,6 +48,8 @@ void Peashooter::show()
 	}
 	//œ‘ æ
 	std::pair<int, int> pixel_coordinate = coordinate_to_pixel(x, y);
-	putimagePng(pixel_coordinate.first, pixel_coordinate.second, &im_peashooter[status]);
-	status = (status + 1) % 12;
+	int status_int = (int)status;
+	putimagePng(pixel_coordinate.first, pixel_coordinate.second, &im_peashooter[status_int]);
+	status += 0.5;
+	if (status == 13) status = 0;
 }

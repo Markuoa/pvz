@@ -11,7 +11,7 @@
 class Peashooter : public Plant
 {
 public:
-	int status = 0;
+	float status = 0;
 	clock_t now;
 	clock_t start;
 	static std::vector<IMAGE> im_peashooter;
