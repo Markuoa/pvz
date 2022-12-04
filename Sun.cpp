@@ -32,7 +32,7 @@ void Sun::show()
 {
 	if (down)
 	{
-		y = y + 5;
+		y = y + 3;
 		if (y >= destination_y) down = false;
 	}
 	putimagePng(x, y, &im_sun);

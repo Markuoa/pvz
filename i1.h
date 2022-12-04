@@ -12,6 +12,7 @@
 
 extern IMAGE im_bk;
 extern IMAGE im_lose;
+extern IMAGE im_HugeWave;
 
 extern The_Plants plants;
 extern The_Zombies zombies;
@@ -43,7 +44,7 @@ public:
 	clock_t now = 0;
 	int now_second = 0;
 	Sun* sun;
-	int count_sun = 500;
+	int count_sun = 600;
 	//以下几个IMAGE
 	//store:(0,0)
 	//card:起始点(132,5),宽53，高75

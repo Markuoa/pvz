@@ -9,8 +9,15 @@
 class The_Zombies
 {
 public:
-	std::vector<std::vector<Zombie*>> the_Zombies;
+	std::vector<std::vector<Zombie*>> the_Zombies;//场上僵尸
+	std::vector<std::vector<int>> all_Zombies;//本关全部僵尸
+	int wave = 1;//波次
+	clock_t start;
+	clock_t now;
 
 	The_Zombies();
 	void show_Zombies(std::vector<std::vector<Plant*>>&, std::vector<std::list<int>>&);
+	void init_wave(int);
+	void update();
+	void add_zombie();
 };

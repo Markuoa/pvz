@@ -107,6 +107,32 @@ Zombie::Zombie(int y)
 	}
 }
 
+Zombie::Zombie(int y, int p_x)
+{
+	coordinate_y = y;
+	switch (coordinate_y)
+	{
+	case 0:
+		pix_y = 67;
+		break;
+	case 1:
+		pix_y = 187;
+		break;
+	case 2:
+		pix_y = 315;
+		break;
+	case 3:
+		pix_y = 430;
+		break;
+	case 4:
+		pix_y = 550;
+		break;
+	default:
+		break;
+	}
+	this->pix_x = pix_x;
+}
+
 int Zombie::pix_to_coordinate_x(int p_x)
 {
 	int x;
@@ -137,7 +163,7 @@ int Zombie::update(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std
 	//位移
 	if (situation == 1)
 	{
-		pix_x -= 0.4;
+		pix_x -= 0.5;
 	}
 	//遇到植物进入eat状态，植物扣血
 	if (situation == 1 || situation == 2)
@@ -207,8 +233,7 @@ void Zombie::show(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std:
 		putimagePng(pix_x, pix_y, &im_zombie_die[status_int]);
 	if (pix_x < -110)
 	{
-		std::exception e;
-		throw e;
+		throw "Lose";
 	}
 }
 

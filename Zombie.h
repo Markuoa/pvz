@@ -15,7 +15,7 @@ public:
 	int pix_y;
 	int coordinate_x;
 	int coordinate_y;
-	int HP = 70;
+	int HP = 210;
 	float status = 0; //哪一张图片
 	int situation = 1;//行走状态
 	static std::vector<IMAGE> im_zombie;
@@ -25,6 +25,7 @@ public:
 
 	Zombie();
 	Zombie(int);
+	Zombie(int, int);
 	void show(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std::list<int>>&);
 	int update(std::vector<std::vector<Plant*>>& the_Plants, std::vector<std::list<int>>&);
 	int pix_to_coordinate_x(int);

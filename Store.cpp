@@ -33,7 +33,7 @@ void Store::update()
 {
 	now = GetTickCount();
 	now_second = (now - start) / 1000;
-	if (now_second % 100 == 10)
+	if (now_second % 100 == 20)
 	{
 		start = now;
 		delete(sun);
