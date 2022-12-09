@@ -10,7 +10,12 @@
 #include "The_Zombies.h"
 #include "Pea.h"
 
+extern IMAGE im_wait;
 extern IMAGE im_bk;
+extern IMAGE im_big_bk;
+extern IMAGE im_ready;
+extern IMAGE im_set;
+extern IMAGE im_setplant;
 extern IMAGE im_lose;
 extern IMAGE im_HugeWave;
 

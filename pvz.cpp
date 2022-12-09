@@ -4,8 +4,13 @@
 #include <time.h>
 #include "i1.h"
 
+extern IMAGE im_wait;
 extern IMAGE im_bk;
+extern IMAGE im_big_bk;
 extern IMAGE im_lose;
+extern IMAGE im_ready;
+extern IMAGE im_set;
+extern IMAGE im_setplant;
 extern IMAGE im_HugeWave;
 extern Store store;
 extern The_Plants plants;
@@ -18,9 +23,57 @@ int font = 0;
 int main()
 {
     init_pvz();
+    ExMessage m;
+    while (true)
+    {
+        putimage(0, 0, &im_wait);
+        if (peekmessage(&m)) 
+            if (m.message == WM_LBUTTONDOWN) {
+                flushmessage();
+                break;
+        }
+    }
+    for (int pix_left = 0; pix_left > -720; pix_left = pix_left-3)
+    {
+        putimage(pix_left, 0, &im_big_bk);
+        Sleep(1);
+    }
+    Sleep(500);
+    for (int pix_left = -720; pix_left <=-240; pix_left = pix_left+3)
+    {
+        putimage(pix_left, 0, &im_big_bk);
+        Sleep(1);
+    }
+
+    BeginBatchDraw();
+    for (int font = 0; font <= 2; font++)
+    {
+        cleardevice();
+        putimagePng(-240, 0, &im_big_bk);
+        switch (font)
+        {
+        case 0:
+            putimagePng(440, 320, &im_ready);
+            break;
+        case 1:
+            putimagePng(420, 320, &im_set);
+            break;
+        case 2:
+            putimagePng(420, 320, &im_setplant);
+            break;
+        case 4:
+            putimagePng(190, 320, &im_HugeWave);
+            break;
+        default:
+            break;
+        }
+        FlushBatchDraw();
+        Sleep(1000);
+    }
+    
+
 
     
-    BeginBatchDraw();
 
     while (true)
     {   

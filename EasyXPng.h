@@ -1,6 +1,18 @@
 #pragma once
 #include <graphics.h>  
 #include <math.h>
+#include<windows.h>
+#include<mmsystem.h>
+#include<dsound.h>
+#pragma comment(lib, "WINMM.LIB")
+//int main(void)
+//{
+//	PlaySound(TEXT("music.wav"), NULL, SND_FILENAME | SND_ASYNC);
+//	while (true)
+//	{
+//		;
+//	}
+//}
 #define  PI 3.14159
 
 // 在当前设备上绘制带透明通道的png图片
