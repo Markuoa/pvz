@@ -7,6 +7,7 @@ int Sun::width;
 
 Sun::Sun()
 {
+	down = true;
 	destination_x = rand() % 700 + 150;
 	destination_y = rand() % 350 + 220;
 	x = destination_x;
@@ -15,10 +16,20 @@ Sun::Sun()
 
 Sun::Sun(int external_x, int external_y)
 {
+	down = true;
 	destination_x = external_x;
 	destination_y = external_y;
 	x = external_x;
 	y = 0;
+}
+
+Sun::Sun(int external_x, int external_y, int command)
+{
+	down = false;
+	destination_x = external_x;
+	destination_y = external_y;
+	x = external_x;
+	y = external_y;
 }
 
 void Sun::init_img()

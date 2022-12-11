@@ -15,7 +15,7 @@ public:
 	int pix_y;
 	int coordinate_x;
 	int coordinate_y;
-	int HP = 210;
+	int HP = 50;
 	float status = 0; //哪一张图片
 	int situation = 1;//行走状态
 	static std::vector<IMAGE> im_zombie;

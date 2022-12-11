@@ -22,7 +22,10 @@ void The_Plants::show_Plants()
 	}
 }
 
-void The_Plants::add_Plant(int x, int y, Plant* plant)
+bool The_Plants::add_Plant(int x, int y, Plant* plant)
 {
+	if (the_Plants[y][x] != nullptr)
+		return false;
 	the_Plants[y][x] = plant;
+	return true;
 }

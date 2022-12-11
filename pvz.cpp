@@ -3,7 +3,10 @@
 #include <conio.h>
 #include <time.h>
 #include "i1.h"
-
+const int card_x = 600;
+const int card_y = 350;
+extern const int card_width;
+extern const int caard_height;
 extern IMAGE im_wait;
 extern IMAGE im_bk;
 extern IMAGE im_big_bk;
@@ -11,6 +14,7 @@ extern IMAGE im_lose;
 extern IMAGE im_ready;
 extern IMAGE im_set;
 extern IMAGE im_setplant;
+extern IMAGE im_find_sunflower;
 extern IMAGE im_HugeWave;
 extern Store store;
 extern The_Plants plants;
@@ -23,6 +27,7 @@ int font = 0;
 int main()
 {
     init_pvz();
+    PlaySound(TEXT("music/Choose Your Seeds.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
     ExMessage m;
     while (true)
     {
@@ -33,13 +38,13 @@ int main()
                 break;
         }
     }
-    for (int pix_left = 0; pix_left > -720; pix_left = pix_left-3)
+    for (int pix_left = 0; pix_left > -690; pix_left = pix_left-3)
     {
         putimage(pix_left, 0, &im_big_bk);
         Sleep(1);
     }
     Sleep(500);
-    for (int pix_left = -720; pix_left <=-240; pix_left = pix_left+3)
+    for (int pix_left = -690; pix_left <=-240; pix_left = pix_left+3)
     {
         putimage(pix_left, 0, &im_big_bk);
         Sleep(1);
@@ -74,7 +79,13 @@ int main()
 
 
     
-
+    PlaySound(NULL, NULL, SND_FILENAME);
+    mciSendString(L"open music/Grasswalk.wav", NULL, 0, NULL);
+    mciSendString(L"play music/Grasswalk.wav", NULL, 0, NULL);
+    //PlaySound(TEXT("music/Grasswalk.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+    std::string command = "None";
+    zombies.start = clock();
+    zombies.init_wave(2);
     while (true)
     {   
         cleardevice();
@@ -100,7 +111,8 @@ int main()
             }
             if (e == "pass")
             {
-                putimagePng(300, 350, &(store.im_Sunflower_card));
+                putimagePng(card_x, card_y, &(store.im_Sunflower_card));
+                command = "Pass";
             }
         }
         now = clock();
@@ -114,13 +126,39 @@ int main()
         default:
             break;
         }
+        if (command == "Pass")
+        {
+            if (peekmessage(&m))
+                if (m.message == WM_LBUTTONDOWN) {
+                    if (m.x >= card_x && m.x < card_x + card_width && m.y >= card_y && m.y < card_y + card_y + caard_height)
+                    {
+                        flushmessage();
+                        mciSendString(L"close music/Grasswalk.wav", NULL, 0, NULL);
+                        break;
+                    }
+                }
+        }
         FlushBatchDraw();
+        flushmessage();
         Sleep(30);
     }
+    //1.1结束，向日葵展示页面
+    mciSendString(L"close music/Grasswalk.wav", NULL, 0, NULL);
+    mciSendString(L"open music/Zen.mp3", NULL, 0, NULL);
+    mciSendString(L"play music/Zen.mp3", NULL, 0, NULL);
     while (true)
     {
-        ;
+        putimage(0, 0, &im_find_sunflower);
+        FlushBatchDraw();
+        if (peekmessage(&m))
+            if (m.message == WM_LBUTTONDOWN) {
+                //if (m.x >= card_x && m.x < card_x + card_width && m.y >= card_y && m.y < card_y + card_y + caard_height)
+                //    break;
+            }
+        flushmessage();
+        Sleep(50);
     }
+
 }
 
 

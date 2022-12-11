@@ -2,6 +2,7 @@
 
 IMAGE Store::im_store;
 IMAGE Store::im_Sunflower_card;
+IMAGE Store::im_Sunflower_card_2;
 IMAGE Store::im_Peashooter_card;
 IMAGE Store::im_Peashooter_card_2;
 
@@ -11,6 +12,7 @@ const int card_width = 53;
 const int caard_height = 75;
 
 extern TheMouseEvent event1;
+extern int count_sun;
 
 Store::Store()
 {
@@ -27,13 +29,14 @@ void Store::init_img()
 	loadimage(&im_Peashooter_card, _T("other/peashooter_card.png"));   // 导入图片
 	loadimage(&im_Peashooter_card_2, _T("other/peashooter_card_2.png"));   // 导入图片
 	loadimage(&im_Sunflower_card, _T("other/sunflower_card.png"));   // 导入图片
+	loadimage(&im_Sunflower_card_2, _T("other/sunflower_card_2.png"));   // 导入图片
 }
 
 void Store::update()
 {
 	now = GetTickCount();
 	now_second = (now - start) / 1000;
-	if (now_second % 100 == 20)
+	if (now_second % 100 >= 2)
 	{
 		start = now;
 		delete(sun);
@@ -44,6 +47,12 @@ void Store::update()
 		Pea_avalaible = false;
 	else if(!event1.click)
 		Pea_avalaible = true;
+
+	//向日葵可用性
+	if (count_sun < 50)
+		Sunflower_avalaible = false;
+	else if (!event1.click)
+		Sunflower_avalaible = true;
 }
 
 bool Store::click_sun(int mouse_x, int mouse_y)
@@ -74,6 +83,11 @@ void Store::show()
 		putimagePng(card_coordinate_x, card_coordinate_y, &im_Peashooter_card);
 	else
 		putimagePng(card_coordinate_x, card_coordinate_y, &im_Peashooter_card_2);
+	//显示卡片2：向日葵
+	if (Sunflower_avalaible)
+		putimagePng(card_coordinate_x + card_width, card_coordinate_y, &im_Sunflower_card);
+	else
+		putimagePng(card_coordinate_x + card_width, card_coordinate_y, &im_Sunflower_card_2);
 	//显示阳光值
 	TCHAR s[5] = { '0' };
 	_stprintf_s(s, _T("%d"), count_sun);

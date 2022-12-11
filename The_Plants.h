@@ -12,5 +12,5 @@ public:
 
 	The_Plants();
 	void show_Plants();
-	void add_Plant(int, int, Plant*);
+	bool add_Plant(int, int, Plant*);
 };

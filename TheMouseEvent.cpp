@@ -1,5 +1,6 @@
 #pragma once
 #include "i1.h"
+#include "base_base.h"
 
 extern const int card_coordinate_x;
 extern const int card_coordinate_y;
@@ -7,6 +8,7 @@ extern const int card_width;
 extern const int caard_height;
 extern The_Plants plants;
 extern Store store;
+extern int count_sun;
 
 TheMouseEvent::TheMouseEvent()
 {
@@ -52,8 +54,21 @@ void TheMouseEvent::update()
 					chosePlant_index = 1;
 				}
 			}
+			else if (m.x > card_coordinate_x + card_width && m.x < card_coordinate_x + card_width * 2 && m.y > card_coordinate_y && m.y < card_coordinate_y + caard_height)
+			{
+				if (store.Sunflower_avalaible) {
+					//第二个卡槽事件
+					click = true;
+					store.Sunflower_avalaible = false;
+					chosePlant_index = 2;
+				}
+			}
 			//优先点卡槽，次选择点阳光，阳光不在乎是否已经点击过卡槽
 			else if (store.click_sun(m.x, m.y))
+			{
+				;
+			}
+			else if (Sunflower::click_sun(m.x, m.y))
 			{
 				;
 			}
@@ -68,8 +83,18 @@ void TheMouseEvent::update()
 					if (chosePlant_index == 1)
 					{
 						Plant* ptr = new Peashooter(coordinate_mouse.first, coordinate_mouse.second);
-						store.count_sun -= 100;
-						plants.add_Plant(coordinate_mouse.first, coordinate_mouse.second, ptr);
+						if (plants.add_Plant(coordinate_mouse.first, coordinate_mouse.second, ptr))
+							count_sun -= 100;
+						else
+							delete(ptr);
+					}
+					if (chosePlant_index == 2)
+					{
+						Plant* ptr = new Sunflower(coordinate_mouse.first, coordinate_mouse.second);
+						if (plants.add_Plant(coordinate_mouse.first, coordinate_mouse.second, ptr))
+							count_sun -= 50;
+						else
+							delete(ptr);
 					}
 				}
 				chosePlant_index = -1;

@@ -20,6 +20,19 @@ void The_Zombies::init_wave(int hurder)
 		for (int i = 0; i < 10; i++)
 			all_Zombies[i][2] = 1;
 	}
+	if (hurder == 2)
+	{
+		memset(&all_Zombies[1][0], 0, sizeof(int) * 9 * 5);
+		all_Zombies[1][0] = 1; all_Zombies[1][1] = 0; all_Zombies[1][2] = 0; all_Zombies[1][3] = 0; all_Zombies[1][4] = 0;
+		all_Zombies[2][0] = 0; all_Zombies[2][1] = 1; all_Zombies[2][2] = 0; all_Zombies[2][3] = 0; all_Zombies[2][4] = 0;
+		all_Zombies[3][0] = 0; all_Zombies[3][1] = 0; all_Zombies[3][2] = 1; all_Zombies[3][3] = 0; all_Zombies[3][4] = 0;
+		all_Zombies[4][0] = 0; all_Zombies[4][1] = 0; all_Zombies[4][2] = 0; all_Zombies[4][3] = 1; all_Zombies[4][4] = 0;
+		all_Zombies[5][0] = 0; all_Zombies[5][1] = 0; all_Zombies[5][2] = 0; all_Zombies[5][3] = 0; all_Zombies[5][4] = 1; 
+		all_Zombies[6][0] = 1; all_Zombies[6][1] = 0; all_Zombies[6][2] = 0; all_Zombies[6][3] = 0; all_Zombies[6][4] = 0;
+		all_Zombies[7][0] = 0; all_Zombies[7][1] = 1; all_Zombies[7][2] = 0; all_Zombies[7][3] = 0; all_Zombies[7][4] = 0;
+		all_Zombies[8][0] = 0; all_Zombies[8][1] = 0; all_Zombies[8][2] = 1; all_Zombies[8][3] = 0; all_Zombies[8][4] = 0;
+		all_Zombies[9][0] = 0; all_Zombies[9][1] = 0; all_Zombies[9][2] = 0; all_Zombies[9][3] = 1; all_Zombies[9][4] = 0;
+	}
 }
 
 void The_Zombies::add_zombie()
@@ -37,7 +50,7 @@ void The_Zombies::update()
 {
 	now = clock();
 	int now_secound = (now - start) / CLOCKS_PER_SEC;
-	if (now_secound >= 2 && wave != 10 && wave != 11)
+	if (now_secound >= 3 && wave != 10 && wave != 11)
 	{
 		wave++;
 		start = now;

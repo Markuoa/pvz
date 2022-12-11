@@ -11,11 +11,12 @@ public:
 	int destination_x, destination_y;
 	static int width;
 	static int height;
-	bool down = true;
+	bool down;
 	static IMAGE im_sun;
 
 	Sun();
 	Sun(int, int);
+	Sun(int, int, int);
 	static void init_img();
 	void show();
 };
