@@ -12,5 +12,6 @@ public:
 
 	The_Plants();
 	void show_Plants();
+	void flush_plants();
 	bool add_Plant(int, int, Plant*);
 };

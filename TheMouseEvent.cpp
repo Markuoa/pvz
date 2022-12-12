@@ -38,7 +38,7 @@ std::pair<int, int> TheMouseEvent::pixel_to_coordinate_plant(int p_x, int p_y)
 	return std::pair<int, int>(x, y);
 }
 
-void TheMouseEvent::update()
+std::string TheMouseEvent::update()
 {
 	ExMessage m;
 	if (peekmessage(&m))
@@ -99,9 +99,13 @@ void TheMouseEvent::update()
 				}
 				chosePlant_index = -1;
 			}
+			else if (pass)
+			{
+				if (m.x >= 600 && m.x < 680 + card_width && m.y >= 350 && m.y < 450)
+					return std::string("pass");
+			}
 		}
-	//清空鼠标信息
-	flushmessage();
+	return std::string("none");
 }
 
 

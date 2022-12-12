@@ -8,6 +8,8 @@ IMAGE im_ready;
 IMAGE im_set;
 IMAGE im_setplant;
 IMAGE im_find_sunflower;
+IMAGE im_win;
+IMAGE im_end;
 The_Plants plants;
 Store store;
 TheMouseEvent event1;
@@ -26,9 +28,11 @@ void init_pvz()
 	loadimage(&im_bk, _T("background.png"));   // 导入背景图片
 	loadimage(&im_big_bk, _T("background2.png"));   // 导入背景图片
 	loadimage(&im_find_sunflower, _T("other/findSunflower.png"));   // 导入背景图片
+	loadimage(&im_end, _T("other/end.png"));   // 导入背景图片
 	loadimage(&im_ready, _T("other/ready.png"));   // 导入文字图片
 	loadimage(&im_set, _T("other/set.png"));   // 导入文字图片
 	loadimage(&im_setplant, _T("other/setplant.png"));   // 导入文字图片
+	loadimage(&im_win, _T("other/win.png"));//导入奖杯
 	loadimage(&im_lose, _T("other/lose.png"));   // 导入失败图片
 	loadimage(&im_HugeWave, _T("other/Hugewave.png"));   // 导入一大波图片
 	Sun::init_img();

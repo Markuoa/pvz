@@ -67,7 +67,7 @@ void Sunflower::provide_sun()
 {
 	now = clock();
 	int now_second = (now - start) / CLOCKS_PER_SEC;
-	if (now_second >= 5)
+	if (now_second >= 12)
 	{
 		std::pair<int, int> coordinate = coordinate_to_pixel(x, y);
 		Suns.push_back(Sun(coordinate.first, coordinate.second, 1));

@@ -22,7 +22,15 @@ void The_Zombies::init_wave(int hurder)
 	}
 	if (hurder == 2)
 	{
-		memset(&all_Zombies[1][0], 0, sizeof(int) * 9 * 5);
+		//memset(&all_Zombies[1][0], 0, sizeof(int) * 9 * 5);
+		all_Zombies.clear();
+		all_Zombies.resize(11);
+		for (auto& i : all_Zombies)
+		{
+			i.resize(5);
+			for (auto& j : i)
+				j = 0;
+		}
 		all_Zombies[1][0] = 1; all_Zombies[1][1] = 0; all_Zombies[1][2] = 0; all_Zombies[1][3] = 0; all_Zombies[1][4] = 0;
 		all_Zombies[2][0] = 0; all_Zombies[2][1] = 1; all_Zombies[2][2] = 0; all_Zombies[2][3] = 0; all_Zombies[2][4] = 0;
 		all_Zombies[3][0] = 0; all_Zombies[3][1] = 0; all_Zombies[3][2] = 1; all_Zombies[3][3] = 0; all_Zombies[3][4] = 0;
@@ -32,6 +40,19 @@ void The_Zombies::init_wave(int hurder)
 		all_Zombies[7][0] = 0; all_Zombies[7][1] = 1; all_Zombies[7][2] = 0; all_Zombies[7][3] = 0; all_Zombies[7][4] = 0;
 		all_Zombies[8][0] = 0; all_Zombies[8][1] = 0; all_Zombies[8][2] = 1; all_Zombies[8][3] = 0; all_Zombies[8][4] = 0;
 		all_Zombies[9][0] = 0; all_Zombies[9][1] = 0; all_Zombies[9][2] = 0; all_Zombies[9][3] = 1; all_Zombies[9][4] = 0;
+	}
+}
+
+void The_Zombies::flush_zombie()
+{
+	for (auto& zombie_rows : the_Zombies)
+	{
+		for (auto& zombie_ptr : zombie_rows)
+		{
+			delete(zombie_ptr);
+			zombie_ptr = nullptr;
+		}
+		zombie_rows.clear();
 	}
 }
 
@@ -50,7 +71,7 @@ void The_Zombies::update()
 {
 	now = clock();
 	int now_secound = (now - start) / CLOCKS_PER_SEC;
-	if (now_secound >= 3 && wave != 10 && wave != 11)
+	if (now_secound >= 8 && wave != 10 && wave != 11)
 	{
 		wave++;
 		start = now;
@@ -83,7 +104,7 @@ void The_Zombies::show_Zombies(std::vector<std::vector<Plant*>>& the_Plants, std
 	if (wave == 11)
 	{
 		bool pass = true;
-		for (auto i : the_Zombies)
+		for (auto& i : the_Zombies)
 		{
 			if (! i.empty())
 			{

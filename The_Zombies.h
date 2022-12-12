@@ -18,6 +18,7 @@ public:
 	The_Zombies();
 	void show_Zombies(std::vector<std::vector<Plant*>>&, std::vector<std::list<int>>&);
 	void init_wave(int);
+	void flush_zombie();
 	void update();
 	void add_zombie();
 };

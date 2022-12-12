@@ -56,3 +56,9 @@ void Pea::show()
 		}
 	}
 }
+
+void Pea::flush_pea()
+{
+	the_peas.clear();
+	the_peas.resize(5);
+}

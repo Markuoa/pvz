@@ -17,4 +17,5 @@ public:
 	int coordinate_to_pix_y(int);
 	void add_pea();
 	void show();
+	void flush_pea();
 };

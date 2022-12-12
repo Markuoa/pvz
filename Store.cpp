@@ -13,6 +13,7 @@ const int caard_height = 75;
 
 extern TheMouseEvent event1;
 extern int count_sun;
+extern int level;
 
 Store::Store()
 {
@@ -36,7 +37,7 @@ void Store::update()
 {
 	now = GetTickCount();
 	now_second = (now - start) / 1000;
-	if (now_second % 100 >= 2)
+	if (now_second % 100 >= 8)
 	{
 		start = now;
 		delete(sun);
@@ -75,19 +76,20 @@ void Store::show()
 	//显示阳光
 	if (sun != nullptr)
 		sun->show();
-	putimagePng(0, 0, &im_store);
 	//显示卡槽
-	putimagePng(card_coordinate_x + card_width, card_coordinate_y, &im_Sunflower_card);
+	putimagePng(0, 0, &im_store);
 	//显示卡片1：豌豆射手
 	if(Pea_avalaible)
 		putimagePng(card_coordinate_x, card_coordinate_y, &im_Peashooter_card);
 	else
 		putimagePng(card_coordinate_x, card_coordinate_y, &im_Peashooter_card_2);
 	//显示卡片2：向日葵
-	if (Sunflower_avalaible)
-		putimagePng(card_coordinate_x + card_width, card_coordinate_y, &im_Sunflower_card);
-	else
-		putimagePng(card_coordinate_x + card_width, card_coordinate_y, &im_Sunflower_card_2);
+	if (level >= 2) {
+		if (Sunflower_avalaible)
+			putimagePng(card_coordinate_x + card_width, card_coordinate_y, &im_Sunflower_card);
+		else
+			putimagePng(card_coordinate_x + card_width, card_coordinate_y, &im_Sunflower_card_2);
+	}
 	//显示阳光值
 	TCHAR s[5] = { '0' };
 	_stprintf_s(s, _T("%d"), count_sun);

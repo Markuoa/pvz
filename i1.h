@@ -20,6 +20,8 @@ extern IMAGE im_setplant;
 extern IMAGE im_lose;
 extern IMAGE im_HugeWave;
 extern IMAGE im_find_sunflower;
+extern IMAGE im_win;
+extern IMAGE im_end;
 
 extern The_Plants plants;
 extern The_Zombies zombies;
@@ -33,12 +35,13 @@ class TheMouseEvent
 {
 public:
 	bool click = false;
+	bool pass = false;
 	IMAGE im_move;
 	int chosePlant_index = -1;
 
 
 	TheMouseEvent();
-	void update();
+	std::string update();
 	std::pair<int, int> pixel_to_coordinate_plant(int, int);
 };
 

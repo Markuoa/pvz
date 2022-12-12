@@ -22,6 +22,19 @@ void The_Plants::show_Plants()
 	}
 }
 
+void The_Plants::flush_plants()
+{
+	for (auto& i : the_Plants)
+	{
+		for (auto& j : i)
+			if (j != nullptr)
+			{
+				delete(j);
+				j = nullptr;
+			}
+	}
+}
+
 bool The_Plants::add_Plant(int x, int y, Plant* plant)
 {
 	if (the_Plants[y][x] != nullptr)
